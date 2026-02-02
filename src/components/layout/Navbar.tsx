@@ -63,7 +63,7 @@ const Navbar = ({
     { title: "Home", url: "/" },
     {
       title: "Menus",
-      url: "/menus",
+      url: "/menu-items",
     },
     {
       title: "Restaurants",

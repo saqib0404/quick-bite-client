@@ -21,23 +21,29 @@ function cuisineBadgeTone(cuisine: MenuItem["cuisine"]) {
     }
 }
 
-export default async function MenuDetailsPage({ params }: { params: { id: string } }) {
-    const { data } = await menuService.getMenuItemById(params.id, { cache: "no-store" });
+export default async function MenuDetailsPage({
+    params,
+}: {
+    params: Promise<{ id: string }>;
+}) {
+    const { id } = await params;
 
-    const item = data && !Array.isArray(data) ? data : data?.data ?? null;
+    const { data } = await menuService.getMenuItemById(id, { cache: "no-store" });
+
+    const item = data && !Array.isArray(data) ? data : null;
 
     if (!item) {
         return (
             <section className="py-16 px-4 md:px-8 lg:px-16">
                 <div className="mx-auto max-w-4xl">
                     <Link
-                        href="/menu"
+                        href="/menu-items"
                         className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary"
                     >
                         <ArrowLeft className="h-4 w-4" /> Back to menu
                     </Link>
 
-                    <div className="mt-8 rounded-2xl border border-dashed p-10 text-center text-muted-foreground">
+                    <div className="mt-8 h-[50vh] rounded-2xl border border-dashed p-10 text-center text-muted-foreground">
                         Menu item not found.
                     </div>
                 </div>
@@ -46,10 +52,10 @@ export default async function MenuDetailsPage({ params }: { params: { id: string
     }
 
     return (
-        <section className="py-16 px-4 md:px-8 lg:px-16">
+        <section className="py-16 px-4 md:px-8 h-[70vh] lg:px-16">
             <div className="mx-auto max-w-5xl">
                 <Link
-                    href="/menu"
+                    href="/menu-items"
                     className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary"
                 >
                     <ArrowLeft className="h-4 w-4" /> Back to menu
@@ -71,7 +77,7 @@ export default async function MenuDetailsPage({ params }: { params: { id: string
                     <div className="space-y-5">
                         <div className="flex items-start justify-between gap-4">
                             <h1 className="text-3xl md:text-4xl font-bold leading-tight">{item.name}</h1>
-                            <div className="text-xl font-semibold">{item.priceCents}</div>
+                            <div className="text-xl font-semibold">$ {item.priceCents}</div>
                         </div>
 
                         <div className="flex flex-wrap gap-2">

@@ -82,7 +82,7 @@ export default function MenuCard({ item }: { item: MenuItem }) {
                 </span>
 
                 <Link
-                    href={`/menu/${item.id}`}
+                    href={`/menu-items/${item.id}`}
                     className="text-sm font-semibold text-primary group-hover:underline"
                 >
                     View Details &rarr;

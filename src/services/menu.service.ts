@@ -61,6 +61,7 @@ export const menuService = {
 
             const res = await fetch(`${API_URL}/menu-items/${menuItemId}`, config);
             const data = await res.json();
+            
 
             return { data, error: null as null | { message: string } };
         } catch {
