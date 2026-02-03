@@ -31,7 +31,7 @@ export function LoginForm(props: React.ComponentProps<typeof Card>) {
     const [showPassword, setShowPassword] = React.useState(false);
 
     const appUrl =
-        process.env.NEXT_PUBLIC_APP_URL?.replace(/\/$/, "") || "http://localhost:3000";
+        process.env.FRONTEND_URL?.replace(/\/$/, "") || "http://localhost:3000";
 
     // show success toast after register redirect: /login?registered=1
     React.useEffect(() => {
@@ -65,7 +65,6 @@ export function LoginForm(props: React.ComponentProps<typeof Card>) {
 
                 toast.success("Welcome back!", { id: toastId });
 
-                // ✅ choose where to go after login
                 router.push("/dashboard");
             } catch {
                 toast.error("Something went wrong, please try again.", { id: toastId });
