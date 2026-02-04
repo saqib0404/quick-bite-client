@@ -8,8 +8,8 @@ export async function proxy(request: NextRequest) {
 
     const isAuthPage = pathname.startsWith("/login") || pathname.startsWith("/register");
 
-    // 🟡 NOT LOGGED IN
-    if (!data) {
+    //  NOT LOGGED IN
+    if (!data?.user) {
         // Allow access to login/register
         if (isAuthPage) return NextResponse.next();
 
@@ -19,22 +19,22 @@ export async function proxy(request: NextRequest) {
 
     const role = data.user.role;
 
-    // 🟢 LOGGED IN but trying to visit login/register
+    //  LOGGED IN but trying to visit login/register
     if (isAuthPage) {
         return NextResponse.redirect(new URL(getRedirectPath(role), request.url));
     }
 
-    // 🔒 ADMIN ROUTE
+    //  ADMIN ROUTE
     if (pathname.startsWith("/admin-dashboard") && role !== Roles.admin) {
         return NextResponse.redirect(new URL(getRedirectPath(role), request.url));
     }
 
-    // 🔒 PROVIDER ROUTE
+    //  PROVIDER ROUTE
     if (pathname.startsWith("/provider-dashboard") && role !== Roles.provider) {
         return NextResponse.redirect(new URL(getRedirectPath(role), request.url));
     }
 
-    // 🔒 CUSTOMER ROUTE
+    //  CUSTOMER ROUTE
     if (pathname.startsWith("/dashboard") && role !== Roles.customer) {
         return NextResponse.redirect(new URL(getRedirectPath(role), request.url));
     }

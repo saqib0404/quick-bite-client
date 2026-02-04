@@ -27,7 +27,7 @@ export function LoginForm(props: React.ComponentProps<typeof Card>) {
     const router = useRouter();
     const searchParams = useSearchParams();
 
-    const [didSubmitOnce, setDidSubmitOnce] = React.useState(false);
+    // const [didSubmitOnce, setDidSubmitOnce] = React.useState(false);
     const [showPassword, setShowPassword] = React.useState(false);
 
     const appUrl =
@@ -129,7 +129,7 @@ export function LoginForm(props: React.ComponentProps<typeof Card>) {
                             id="login-form"
                             onSubmit={(e) => {
                                 e.preventDefault();
-                                setDidSubmitOnce(true);
+                                // setDidSubmitOnce(true);
                                 form.handleSubmit();
                             }}
                             className="space-y-4"
@@ -138,12 +138,13 @@ export function LoginForm(props: React.ComponentProps<typeof Card>) {
                                 <form.Field
                                     name="email"
                                     children={(field) => {
-                                        const isInvalid =
-                                            (field.state.meta.isTouched || didSubmitOnce) &&
-                                            !field.state.meta.isValid;
+                                        // const isInvalid =
+                                            // (field.state.meta.isTouched || didSubmitOnce) &&
+                                            // !field.state.meta.isValid;
 
                                         return (
-                                            <Field data-invalid={isInvalid}>
+                                            // <Field data-invalid={isInvalid}>
+                                            <Field>
                                                 <FieldLabel htmlFor={field.name}>Email</FieldLabel>
                                                 <Input
                                                     id={field.name}
@@ -157,7 +158,7 @@ export function LoginForm(props: React.ComponentProps<typeof Card>) {
                                                     onChange={(e) => field.handleChange(e.target.value)}
                                                     disabled={form.state.isSubmitting}
                                                 />
-                                                {isInvalid && <FieldError errors={field.state.meta.errors} />}
+                                                {/* {isInvalid && <FieldError errors={field.state.meta.errors} />} */}
                                             </Field>
                                         );
                                     }}
@@ -166,12 +167,13 @@ export function LoginForm(props: React.ComponentProps<typeof Card>) {
                                 <form.Field
                                     name="password"
                                     children={(field) => {
-                                        const isInvalid =
-                                            (field.state.meta.isTouched || didSubmitOnce) &&
-                                            !field.state.meta.isValid;
+                                        // const isInvalid =
+                                        //     (field.state.meta.isTouched || didSubmitOnce) &&
+                                        //     !field.state.meta.isValid;
 
                                         return (
-                                            <Field data-invalid={isInvalid}>
+                                            // <Field data-invalid={isInvalid}>
+                                            <Field>
                                                 <div className="flex items-center justify-between">
                                                     <FieldLabel htmlFor={field.name}>Password</FieldLabel>
                                                     <Link
@@ -210,7 +212,7 @@ export function LoginForm(props: React.ComponentProps<typeof Card>) {
                                                     </button>
                                                 </div>
 
-                                                {isInvalid && <FieldError errors={field.state.meta.errors} />}
+                                                {/* {isInvalid && <FieldError errors={field.state.meta.errors} />} */}
                                             </Field>
                                         );
                                     }}

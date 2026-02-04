@@ -21,19 +21,19 @@ import { providerRoutes } from "@/routes/provider-routes";
 export function AppSidebar({
     user,
     ...props
-}: {
-    user: { role: string } & React.ComponentProps<typeof Sidebar>;
+}: React.ComponentProps<typeof Sidebar> & {
+    user: { role: string };
 }) {
     let routes: Route[] = [];
 
     switch (user.role) {
-        case "admin":
+        case "ADMIN":
             routes = adminRoutes;
             break;
-        case "customer":
+        case "CUSTOMER":
             routes = userRoutes;
             break;
-        case "provider":
+        case "PROVIDER":
             routes = providerRoutes;
             break;
         default:

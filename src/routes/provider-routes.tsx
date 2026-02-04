@@ -6,7 +6,7 @@ export const providerRoutes: Route[] = [
         items: [
             {
                 title: "My Profile",
-                url: "/analytics",
+                url: "/provider-dashboard/profile",
             },
             {
                 title: "My Restaurant",

@@ -44,7 +44,7 @@ type RegisterValues = z.infer<typeof registerSchema>;
 
 export function RegisterForm(props: React.ComponentProps<typeof Card>) {
     const router = useRouter();
-    const [didSubmitOnce, setDidSubmitOnce] = React.useState(false);
+    // const [didSubmitOnce, setDidSubmitOnce] = React.useState(false);
     const [showPassword, setShowPassword] = React.useState(false);
     const [showConfirm, setShowConfirm] = React.useState(false);
 
@@ -188,7 +188,7 @@ export function RegisterForm(props: React.ComponentProps<typeof Card>) {
                             id="register-form"
                             onSubmit={(e) => {
                                 e.preventDefault();
-                                setDidSubmitOnce(true);
+                                // setDidSubmitOnce(true);
                                 form.handleSubmit();
                             }}
                             className="space-y-4"
@@ -197,12 +197,13 @@ export function RegisterForm(props: React.ComponentProps<typeof Card>) {
                                 <form.Field
                                     name="name"
                                     children={(field) => {
-                                        const isInvalid =
-                                            (field.state.meta.isTouched || didSubmitOnce) &&
-                                            !field.state.meta.isValid;
+                                        // const isInvalid =
+                                        //     (field.state.meta.isTouched || didSubmitOnce) &&
+                                        //     !field.state.meta.isValid;
 
                                         return (
-                                            <Field data-invalid={isInvalid}>
+                                            // <Field data-invalid={isInvalid}>
+                                            <Field>
                                                 <FieldLabel htmlFor={field.name}>Name</FieldLabel>
                                                 <Input
                                                     id={field.name}
@@ -215,7 +216,7 @@ export function RegisterForm(props: React.ComponentProps<typeof Card>) {
                                                     onChange={(e) => field.handleChange(e.target.value)}
                                                     disabled={form.state.isSubmitting}
                                                 />
-                                                {isInvalid && <FieldError errors={field.state.meta.errors} />}
+                                                {/* {isInvalid && <FieldError errors={field.state.meta.errors} />} */}
                                             </Field>
                                         );
                                     }}
@@ -224,12 +225,13 @@ export function RegisterForm(props: React.ComponentProps<typeof Card>) {
                                 <form.Field
                                     name="email"
                                     children={(field) => {
-                                        const isInvalid =
-                                            (field.state.meta.isTouched || didSubmitOnce) &&
-                                            !field.state.meta.isValid;
+                                        // const isInvalid =
+                                        //     (field.state.meta.isTouched || didSubmitOnce) &&
+                                        //     !field.state.meta.isValid;
 
                                         return (
-                                            <Field data-invalid={isInvalid}>
+                                            // <Field data-invalid={isInvalid}>
+                                            <Field>
                                                 <FieldLabel htmlFor={field.name}>Email</FieldLabel>
                                                 <Input
                                                     id={field.name}
@@ -243,7 +245,7 @@ export function RegisterForm(props: React.ComponentProps<typeof Card>) {
                                                     onChange={(e) => field.handleChange(e.target.value)}
                                                     disabled={form.state.isSubmitting}
                                                 />
-                                                {isInvalid && <FieldError errors={field.state.meta.errors} />}
+                                                {/* {isInvalid && <FieldError errors={field.state.meta.errors} />} */}
                                             </Field>
                                         );
                                     }}
@@ -253,12 +255,13 @@ export function RegisterForm(props: React.ComponentProps<typeof Card>) {
                                     <form.Field
                                         name="phone"
                                         children={(field) => {
-                                            const isInvalid =
-                                                (field.state.meta.isTouched || didSubmitOnce) &&
-                                                !field.state.meta.isValid;
+                                            // const isInvalid =
+                                            //     (field.state.meta.isTouched || didSubmitOnce) &&
+                                            //     !field.state.meta.isValid;
 
                                             return (
-                                                <Field data-invalid={isInvalid}>
+                                                // <Field data-invalid={isInvalid}>
+                                                <Field>
                                                     <FieldLabel htmlFor={field.name}>Phone (optional)</FieldLabel>
                                                     <Input
                                                         id={field.name}
@@ -270,7 +273,7 @@ export function RegisterForm(props: React.ComponentProps<typeof Card>) {
                                                         onChange={(e) => field.handleChange(e.target.value)}
                                                         disabled={form.state.isSubmitting}
                                                     />
-                                                    {isInvalid && <FieldError errors={field.state.meta.errors} />}
+                                                    {/* {isInvalid && <FieldError errors={field.state.meta.errors} />} */}
                                                 </Field>
                                             );
                                         }}
@@ -283,12 +286,13 @@ export function RegisterForm(props: React.ComponentProps<typeof Card>) {
                                                 <form.Field
                                                     name="businessName"
                                                     children={(field) => {
-                                                        const isInvalid =
-                                                            (field.state.meta.isTouched || didSubmitOnce) &&
-                                                            !field.state.meta.isValid;
+                                                        // const isInvalid =
+                                                        //     (field.state.meta.isTouched || didSubmitOnce) &&
+                                                        //     !field.state.meta.isValid;
 
                                                         return (
-                                                            <Field data-invalid={isInvalid}>
+                                                            // <Field data-invalid={isInvalid}>
+                                                            <Field>
                                                                 <FieldLabel htmlFor={field.name}>Business name</FieldLabel>
                                                                 <Input
                                                                     id={field.name}
@@ -300,7 +304,7 @@ export function RegisterForm(props: React.ComponentProps<typeof Card>) {
                                                                     onChange={(e) => field.handleChange(e.target.value)}
                                                                     disabled={form.state.isSubmitting}
                                                                 />
-                                                                {isInvalid && <FieldError errors={field.state.meta.errors} />}
+                                                                {/* {isInvalid && <FieldError errors={field.state.meta.errors} />} */}
                                                             </Field>
                                                         );
                                                     }}
@@ -316,12 +320,13 @@ export function RegisterForm(props: React.ComponentProps<typeof Card>) {
                                     <form.Field
                                         name="password"
                                         children={(field) => {
-                                            const isInvalid =
-                                                (field.state.meta.isTouched || didSubmitOnce) &&
-                                                !field.state.meta.isValid;
+                                            // const isInvalid =
+                                            //     (field.state.meta.isTouched || didSubmitOnce) &&
+                                            //     !field.state.meta.isValid;
 
                                             return (
-                                                <Field data-invalid={isInvalid}>
+                                                // <Field data-invalid={isInvalid}>
+                                                <Field>
                                                     <FieldLabel htmlFor={field.name}>Password</FieldLabel>
                                                     <div className="relative">
                                                         <Input
@@ -350,7 +355,7 @@ export function RegisterForm(props: React.ComponentProps<typeof Card>) {
                                                             )}
                                                         </button>
                                                     </div>
-                                                    {isInvalid && <FieldError errors={field.state.meta.errors} />}
+                                                    {/* {isInvalid && <FieldError errors={field.state.meta.errors} />} */}
                                                 </Field>
                                             );
                                         }}
@@ -359,12 +364,13 @@ export function RegisterForm(props: React.ComponentProps<typeof Card>) {
                                     <form.Field
                                         name="confirmPassword"
                                         children={(field) => {
-                                            const isInvalid =
-                                                (field.state.meta.isTouched || didSubmitOnce) &&
-                                                !field.state.meta.isValid;
+                                            // const isInvalid =
+                                            //     (field.state.meta.isTouched || didSubmitOnce) &&
+                                            //     !field.state.meta.isValid;
 
                                             return (
-                                                <Field data-invalid={isInvalid}>
+                                                // <Field data-invalid={isInvalid}>
+                                                <Field>
                                                     <FieldLabel htmlFor={field.name}>Confirm password</FieldLabel>
                                                     <div className="relative">
                                                         <Input
@@ -393,7 +399,7 @@ export function RegisterForm(props: React.ComponentProps<typeof Card>) {
                                                             )}
                                                         </button>
                                                     </div>
-                                                    {isInvalid && <FieldError errors={field.state.meta.errors} />}
+                                                    {/* {isInvalid && <FieldError errors={field.state.meta.errors} />} */}
                                                 </Field>
                                             );
                                         }}
