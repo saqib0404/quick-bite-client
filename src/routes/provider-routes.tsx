@@ -10,11 +10,15 @@ export const providerRoutes: Route[] = [
             },
             {
                 title: "My Restaurant",
-                url: "/analytics",
+                url: "/provider-dashboard/restaurant",
+            },
+            {
+                title: "My Menus",
+                url: "/provider-dashboard/menu-items",
             },
             {
                 title: "Orders",
-                url: "/analytics",
+                url: "/provider-dashboard/order",
             },
             {
                 title: "Home",

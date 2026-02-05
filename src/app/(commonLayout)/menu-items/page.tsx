@@ -36,7 +36,6 @@ export default async function MenuPage({
     return (
         <section className="py-16 px-4 md:px-8 lg:px-16">
             <div className="mx-auto max-w-7xl">
-                {/* Title row with filters on right (your red-marked area) */}
                 <div className="mb-10 flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
                     <div>
                         <h1 className="text-3xl md:text-4xl font-bold">Menu Items</h1>

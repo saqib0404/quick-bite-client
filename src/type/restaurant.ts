@@ -15,3 +15,13 @@ export interface Restaurant {
     createdAt: string;
     updatedAt: string;
 }
+
+export type RestaurantUpsertInput = {
+    name: string;
+    description?: string;
+    phone?: string;
+    addressLine: string;
+    city: string;
+    isActive: boolean;
+};
+

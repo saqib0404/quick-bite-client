@@ -15,3 +15,15 @@ export interface MenuItem {
     createdAt?: string;
     updatedAt?: string;
 }
+
+export type CreateMenuItemInput = {
+  name: string;
+  description?: string;
+  priceCents: number;
+  imageUrl?: string;
+  isAvailable?: boolean;
+  cuisine: CuisineType;
+};
+
+export type UpdateMenuItemInput = Partial<CreateMenuItemInput>;
+
