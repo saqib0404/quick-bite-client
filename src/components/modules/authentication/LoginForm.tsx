@@ -100,7 +100,7 @@ export function LoginForm(props: React.ComponentProps<typeof Card>) {
                             <p className="text-sm font-semibold">Tips</p>
                             <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
                                 <li>• Use your email & password</li>
-                                <li>• Or continue with Google</li>
+                                {/* <li>• Or continue with Google</li> */}
                                 <li>• Keep your account secure</li>
                             </ul>
                         </div>
@@ -250,7 +250,7 @@ export function LoginForm(props: React.ComponentProps<typeof Card>) {
                                             "Login"
                                         )}
                                     </Button>
-
+{/* 
                                     <Button
                                         onClick={handleGoogleLogin}
                                         variant="outline"
@@ -259,7 +259,7 @@ export function LoginForm(props: React.ComponentProps<typeof Card>) {
                                         disabled={isSubmitting}
                                     >
                                         Continue with Google
-                                    </Button>
+                                    </Button> */}
                                 </>
                             )}
                         />

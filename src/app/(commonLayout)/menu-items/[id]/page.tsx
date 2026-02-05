@@ -3,8 +3,11 @@ import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { menuService } from "@/services/menu.service";
+import { reviewService } from "@/services/review.service";
+import { userService } from "@/services/user.service";
 import { ArrowLeft, CheckCircle2, CircleX } from "lucide-react";
-import { MenuItem } from "@/type";
+import { MenuItem, Review } from "@/type";
+import { MenuDetailsInteractions } from "@/components/modules/menupage/menu-details-interactions";
 
 function cuisineBadgeTone(cuisine: MenuItem["cuisine"]) {
     switch (cuisine) {
@@ -29,12 +32,11 @@ export default async function MenuDetailsPage({
     const { id } = await params;
 
     const { data } = await menuService.getMenuItemById(id, { cache: "no-store" });
-
     const item = data && !Array.isArray(data) ? data : null;
 
     if (!item) {
         return (
-            <section className="py-16 px-4 md:px-8 lg:px-16">
+            <section className="py-16 px-4 min-h-[70svh] md:px-8 lg:px-16">
                 <div className="mx-auto max-w-4xl">
                     <Link
                         href="/menu-items"
@@ -51,8 +53,21 @@ export default async function MenuDetailsPage({
         );
     }
 
+    const { data: reviewsRes } = await reviewService.getReviewsByMenuItem(id, { cache: "no-store" });
+    const reviews: Review[] = (reviewsRes?.data ?? []) as Review[];
+
+    const { data: session } = await userService.getSession();
+
+    const role =
+        session?.user?.role ?? session?.role ?? null;
+
+    const userId =
+        session?.user?.id ?? session?.userId ?? session?.id ?? null;
+
+    const isCustomer = role === "CUSTOMER";
+
     return (
-        <section className="py-16 px-4 md:px-8 h-[70vh] lg:px-16">
+        <section className="py-16 px-4 min-h-[70svh] md:px-8 lg:px-16">
             <div className="mx-auto max-w-5xl">
                 <Link
                     href="/menu-items"
@@ -109,6 +124,14 @@ export default async function MenuDetailsPage({
                         </p>
                     </div>
                 </div>
+
+                <MenuDetailsInteractions
+                    menuItemId={id}
+                    isAvailable={item.isAvailable}
+                    isCustomer={isCustomer}
+                    userId={isCustomer ? userId : null}
+                    reviews={reviews}
+                />
             </div>
         </section>
     );

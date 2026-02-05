@@ -440,7 +440,7 @@ export function RegisterForm(props: React.ComponentProps<typeof Card>) {
                                         )}
                                     </Button>
 
-                                    <Button
+                                    {/* <Button
                                         onClick={handleGoogleRegister}
                                         variant="outline"
                                         type="button"
@@ -448,7 +448,7 @@ export function RegisterForm(props: React.ComponentProps<typeof Card>) {
                                         disabled={isSubmitting}
                                     >
                                         Continue with Google
-                                    </Button>
+                                    </Button> */}
                                 </>
                             )}
                         />

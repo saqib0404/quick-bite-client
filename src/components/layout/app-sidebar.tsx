@@ -1,4 +1,5 @@
 import * as React from "react";
+import Link from "next/link";
 
 import {
     Sidebar,
@@ -6,13 +7,12 @@ import {
     SidebarGroup,
     SidebarGroupContent,
     SidebarGroupLabel,
-    SidebarHeader,
     SidebarMenu,
     SidebarMenuButton,
     SidebarMenuItem,
     SidebarRail,
 } from "@/components/ui/sidebar";
-import Link from "next/link";
+
 import { Route } from "@/type";
 import { adminRoutes } from "@/routes/admin-routes";
 import { userRoutes } from "@/routes/user-routes";
@@ -44,23 +44,32 @@ export function AppSidebar({
     return (
         <Sidebar {...props}>
             <SidebarContent>
-                {routes.map((item) => (
-                    <SidebarGroup key={item.title}>
-                        <SidebarGroupLabel>{item.title}</SidebarGroupLabel>
+                {routes.map((group) => (
+                    <SidebarGroup key={group.title}>
+                        <SidebarGroupLabel>{group.title}</SidebarGroupLabel>
+
                         <SidebarGroupContent>
                             <SidebarMenu>
-                                {item.items.map((item) => (
-                                    <SidebarMenuItem key={item.title}>
-                                        <SidebarMenuButton asChild>
-                                            <Link href={item.url}>{item.title}</Link>
-                                        </SidebarMenuButton>
-                                    </SidebarMenuItem>
-                                ))}
+                                {group.items.map((item) => {
+                                    const Icon = item.icon;
+
+                                    return (
+                                        <SidebarMenuItem key={item.url}>
+                                            <SidebarMenuButton asChild>
+                                                <Link href={item.url} className="flex items-center gap-2">
+                                                    {Icon ? <Icon className="h-4 w-4" /> : null}
+                                                    <span>{item.title}</span>
+                                                </Link>
+                                            </SidebarMenuButton>
+                                        </SidebarMenuItem>
+                                    );
+                                })}
                             </SidebarMenu>
                         </SidebarGroupContent>
                     </SidebarGroup>
                 ))}
             </SidebarContent>
+
             <SidebarRail />
         </Sidebar>
     );
