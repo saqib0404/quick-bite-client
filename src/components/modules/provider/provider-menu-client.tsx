@@ -205,7 +205,7 @@ export default function ProviderMenuClient({
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label className="text-sm font-medium">Price (cents) *</label>
+                                    <label className="text-sm font-medium">Price *</label>
                                     <Input
                                         type="number"
                                         value={form.priceCents}

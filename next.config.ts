@@ -9,7 +9,16 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "cdn.apartmenttherapy.info" },
       { protocol: "https", hostname: "i0.wp.com" },
       { protocol: "https", hostname: "imgbb.com" },
+      { protocol: "https", hostname: "i.ibb.co.com" },
     ]
+  },
+  async rewrites() {
+    return [
+      {
+        source: "/api/auth/:path*",
+        destination: `${process.env.BACKEND_URL}/:path*`,
+      },
+    ];
   },
 }
 

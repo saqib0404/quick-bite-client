@@ -47,10 +47,11 @@ function getRedirectPath(role: string) {
         case Roles.admin:
             return "/admin-dashboard";
         case Roles.provider:
-            return "/provider-dashboard";
+            return "/provider-dashboard/profile";
         case Roles.customer:
+            return "/dashboard/profile";
         default:
-            return "/dashboard";
+            return "/dashboard/profile";
     }
 }
 
