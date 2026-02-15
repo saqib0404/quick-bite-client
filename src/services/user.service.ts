@@ -67,7 +67,10 @@ export const userService = {
         try {
             const cookieStore = await cookies();
 
-            const res = await fetch(`${AUTH_URL}/get-session`, {
+            // Use frontend origin so the internal rewrite to the auth backend is applied
+            const sessionUrl = new URL(`/api/auth/get-session`, env.FRONTEND_URL).toString();
+
+            const res = await fetch(sessionUrl, {
                 headers: {
                     Cookie: cookieStore.toString(),
                 },

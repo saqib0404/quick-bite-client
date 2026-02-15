@@ -127,7 +127,7 @@ const Navbar = ({
       setLoggingOut(true);
       await (authClient as any).signOut?.();
       setSession(null);
-      router.push("/login");
+      router.push("/");
       router.refresh();
     } catch {
 

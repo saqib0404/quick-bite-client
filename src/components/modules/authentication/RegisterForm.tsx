@@ -74,7 +74,7 @@ export function RegisterForm(props: React.ComponentProps<typeof Card>) {
                     name: value.name,
                     email: value.email,
                     password: value.password,
-                    callbackURL: appUrl,
+                    // callbackURL: appUrl,
 
                     role: value.role,
 

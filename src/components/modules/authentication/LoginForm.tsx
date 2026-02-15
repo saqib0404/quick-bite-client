@@ -55,7 +55,7 @@ export function LoginForm(props: React.ComponentProps<typeof Card>) {
                 const { error } = await authClient.signIn.email({
                     email: value.email,
                     password: value.password,
-                    callbackURL: appUrl,
+                    // callbackURL: appUrl,
                 });
 
                 if (error) {
@@ -65,7 +65,12 @@ export function LoginForm(props: React.ComponentProps<typeof Card>) {
 
                 toast.success("Welcome back!", { id: toastId });
 
-                router.push("/dashboard");
+                // force full reload so server-side pages and middleware see the new session cookie
+                if (typeof window !== "undefined") {
+                    window.location.replace("/");
+                } else {
+                    router.push("/");
+                }
             } catch {
                 toast.error("Something went wrong, please try again.", { id: toastId });
             }
