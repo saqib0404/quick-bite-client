@@ -80,7 +80,7 @@ export default async function MenuDetailsPage({
                     <Card className="overflow-hidden border-none shadow-md">
                         <div className="relative aspect-4/3 w-full bg-muted">
                             {item.imageUrl ? (
-                                <Image src={item.imageUrl} alt={item.name} fill className="object-cover" />
+                                <Image src={item.imageUrl} alt={item.name} fill className="object-cover" sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 40vw" quality={90} />
                             ) : (
                                 <div className="flex h-full w-full items-center justify-center text-muted-foreground">
                                     No Image

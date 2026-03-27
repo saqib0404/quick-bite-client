@@ -30,8 +30,9 @@ export default function MenuCard({ item }: { item: MenuItem }) {
                         src={item.imageUrl}
                         alt={item.name}
                         fill
-                        className="object-cover transition-transform duration-300 group-hover:scale-105"
-                    />
+                        className="object-cover transition-transform duration-300 group-hover:scale-105"                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        loading="lazy"
+                        quality={80}                    />
                 ) : (
                     <div className="flex h-full w-full items-center justify-center bg-muted text-muted-foreground">
                         No Image

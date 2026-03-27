@@ -53,6 +53,8 @@ export default function HomeCarousel() {
                                     fill
                                     className="object-cover"
                                     priority={idx === 0}
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
+                                    quality={85}
                                 />
 
                                 {/* Overlay */}

@@ -1,12 +1,16 @@
 import MenuCard from "@/components/modules/menupage/MenuCard";
 import MenuFilters from "@/components/modules/menupage/MenuFilters";
+import Pagination from "@/components/modules/common/Pagination";
 import { menuService } from "@/services/menu.service";
 import { CuisineType, MenuItem } from "@/type";
 
 type Search = {
     cuisine?: string;
     minPrice?: string;
+    page?: string;
 };
+
+const ITEMS_PER_PAGE = 8;
 
 export default async function MenuPage({
     searchParams,
@@ -25,13 +29,23 @@ export default async function MenuPage({
             ? parseInt(sp.minPrice, 10)
             : undefined;
 
+    const currentPage = sp.page ? parseInt(sp.page, 10) : 1;
+
     const { data } = await menuService.getAllMenuItems(
         { cuisine, minPrice },
         { cache: "no-store" }
     );
 
+    const allItems: MenuItem[] = Array.isArray(data) ? (data as MenuItem[]) : [];
+    const totalPages = Math.ceil(allItems.length / ITEMS_PER_PAGE);
+    const validPage = Math.min(Math.max(currentPage, 1), totalPages || 1);
+    
+    const startIdx = (validPage - 1) * ITEMS_PER_PAGE;
+    const items = allItems.slice(startIdx, startIdx + ITEMS_PER_PAGE);
 
-    const items: MenuItem[] = Array.isArray(data) ? (data as MenuItem[]) : [];
+    const queryParams: Record<string, string> = {};
+    if (sp.cuisine) queryParams.cuisine = sp.cuisine;
+    if (sp.minPrice) queryParams.minPrice = sp.minPrice;
 
     return (
         <section className="py-16 px-4 md:px-8 lg:px-16">
@@ -50,16 +64,29 @@ export default async function MenuPage({
                     />
                 </div>
 
-                {items.length === 0 ? (
+                {allItems.length === 0 ? (
                     <div className="rounded-2xl h-[50vh] border border-dashed p-10 text-center text-muted-foreground">
                         No menu items found.
                     </div>
                 ) : (
-                    <div className="grid mb-10 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                        {items.map((item: MenuItem) => (
-                            <MenuCard key={item.id} item={item} />
-                        ))}
-                    </div>
+                    <>
+                        <div className="grid mb-10 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                            {items.map((item: MenuItem) => (
+                                <MenuCard key={item.id} item={item} />
+                            ))}
+                        </div>
+
+                        {totalPages > 1 && (
+                            <div className="relative pb-12">
+                                <Pagination
+                                    currentPage={validPage}
+                                    totalPages={totalPages}
+                                    baseUrl="/menu-items"
+                                    queryParams={queryParams}
+                                />
+                            </div>
+                        )}
+                    </>
                 )}
             </div>
         </section>

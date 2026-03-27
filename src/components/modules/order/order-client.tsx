@@ -79,8 +79,11 @@ export default function OrdersClient({ orders }: { orders: MyOrder[] }) {
                                             <Image
                                                 src={o.menuItem.imageUrl}
                                                 alt={o.menuItem.name}
-                                                fill
+                                                width={64}
+                                                height={64}
                                                 className="object-cover"
+                                                loading="lazy"
+                                                quality={75}
                                             />
                                         ) : null}
                                     </div>

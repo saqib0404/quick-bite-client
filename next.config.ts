@@ -10,7 +10,9 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "i0.wp.com" },
       { protocol: "https", hostname: "imgbb.com" },
       { protocol: "https", hostname: "i.ibb.co.com" },
-    ]
+    ],
+    minimumCacheTTL: 60,
+    formats: ["image/avif", "image/webp"],
   },
   async rewrites() {
     return [
