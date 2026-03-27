@@ -1,6 +1,7 @@
 import FaqSection from "@/components/modules/homepage/FaqSection";
 import HomeCarousel from "@/components/modules/homepage/HomeCarousel";
 import HowWeFunction from "@/components/modules/homepage/HowWeFunction";
+import TestimonialSection from "@/components/modules/homepage/TestimonialSection";
 import WhatWeOffer from "@/components/modules/homepage/WhatWeOffer";
 
 export default function Home() {
@@ -11,6 +12,7 @@ export default function Home() {
             <HomeCarousel />
             <WhatWeOffer />
             <HowWeFunction />
+            <TestimonialSection />
             <FaqSection />
         </div>
     );
