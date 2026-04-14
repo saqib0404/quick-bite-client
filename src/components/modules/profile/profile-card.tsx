@@ -29,7 +29,7 @@ export function ProfileCard({
         name: initialMe?.name ?? "",
         phone: initialMe?.phone ?? "",
         image: initialMe?.image ?? "",
-        addressesText: initialMe?.addresses ? JSON.stringify(initialMe.addresses, null, 2) : "",
+        addressesText: initialMe?.addresses ?? "",
         businessName: initialMe?.businessName ?? "",
     });
 
@@ -48,7 +48,7 @@ export function ProfileCard({
             name: me.name ?? "",
             phone: me.phone ?? "",
             image: me.image ?? "",
-            addressesText: me.addresses ? JSON.stringify(me.addresses, null, 2) : "",
+            addressesText: me.addresses ?? "",
             businessName: me.businessName ?? "",
         });
         setEditing(true);
@@ -60,7 +60,7 @@ export function ProfileCard({
             name: me.name ?? "",
             phone: me.phone ?? "",
             image: me.image ?? "",
-            addressesText: me.addresses ? JSON.stringify(me.addresses, null, 2) : "",
+            addressesText: me.addresses ?? "",
             businessName: me.businessName ?? "",
         });
         setEditing(false);
@@ -84,23 +84,10 @@ export function ProfileCard({
         const normalizedImage = nextImage === "" ? null : nextImage;
         if ((me.image ?? null) !== normalizedImage) payload.image = normalizedImage;
 
-        // addresses (optional JSON)
+        // addresses (optional string)
         const addrText = draft.addressesText.trim();
-        let normalizedAddresses: any = null;
-
-        if (addrText === "") {
-            normalizedAddresses = null;
-        } else {
-            try {
-                normalizedAddresses = JSON.parse(addrText);
-            } catch {
-                return toast.error("Addresses must be valid JSON.");
-            }
-        }
-
-        const oldAddrStr = me.addresses == null ? "" : JSON.stringify(me.addresses);
-        const newAddrStr = normalizedAddresses == null ? "" : JSON.stringify(normalizedAddresses);
-        if (oldAddrStr !== newAddrStr) payload.addresses = normalizedAddresses;
+        const normalizedAddresses = addrText === "" ? null : addrText;
+        if ((me.addresses ?? null) !== normalizedAddresses) payload.addresses = normalizedAddresses;
 
         if (me.role === "PROVIDER") {
             const nextBiz = draft.businessName.trim();
@@ -261,17 +248,17 @@ export function ProfileCard({
                         <Separator />
 
                         <div className="space-y-2">
-                            <p className="text-sm font-medium">Addresses (JSON)</p>
+                            <p className="text-sm font-medium">Addresses</p>
                             {editing ? (
                                 <Textarea
                                     value={draft.addressesText}
                                     onChange={(e) => setDraft((p) => ({ ...p, addressesText: e.target.value }))}
-                                    placeholder='{"home": "..."}'
+                                    placeholder="Enter your addresses here"
                                     className="min-h-40"
                                 />
                             ) : (
                                 <Textarea
-                                    value={me.addresses ? JSON.stringify(me.addresses, null, 2) : ""}
+                                    value={me.addresses ?? ""}
                                     disabled
                                     className="min-h-4"
                                 />

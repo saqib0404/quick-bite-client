@@ -12,7 +12,7 @@ export type UserMe = {
     email: string;
     phone?: string | null;
     image?: string | null;
-    addresses?: unknown | null;
+    addresses?: string | null;
     businessName?: string | null;
     role: UserRole;
     status?: string | null;
@@ -24,7 +24,7 @@ export type UpdateMeInput = {
     name?: string;
     phone?: string | null;
     image?: string | null;
-    addresses?: unknown | null;
+    addresses?: string | null;
     businessName?: string | null;
 };
 
