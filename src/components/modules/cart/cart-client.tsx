@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 import {
     Loader2,
@@ -75,6 +75,16 @@ export default function CartClient({
     const [clearing, setClearing] = React.useState(false);
     const [removingId, setRemovingId] = React.useState<string | null>(null);
 
+    const [errorModalOpen, setErrorModalOpen] = React.useState(false);
+
+    const searchParams = useSearchParams();
+
+    React.useEffect(() => {
+        if (searchParams.get('canceled') === 'true') {
+            setErrorModalOpen(true);
+        }
+    }, [searchParams]);
+
     const [addr, setAddr] = React.useState({
         label: "Home",
         city: "",
@@ -142,7 +152,7 @@ export default function CartClient({
         }
 
         setPlacing(true);
-        const t = toast.loading("Placing order...");
+        const t = toast.loading("Creating payment session...");
 
         const res = await checkoutFromCartAction({
             deliveryAddressSnapshot: {
@@ -162,11 +172,12 @@ export default function CartClient({
             return;
         }
 
-        setLines([]);
-        toast.success(res.message ?? "Order placed.", { id: t });
+        toast.dismiss(t);
         setPlacing(false);
         setCheckoutOpen(false);
-        router.refresh();
+
+        // Redirect to Stripe payment
+        window.location.href = res.data?.paymentUrl;
     }
 
     return (
@@ -524,6 +535,27 @@ export default function CartClient({
                     })}
                 </div>
             )}
+
+            {/* Error Modal for Payment Cancellation */}
+            <Dialog open={errorModalOpen} onOpenChange={setErrorModalOpen}>
+                <DialogContent className="sm:max-w-md">
+                    <DialogHeader>
+                        <DialogTitle className="text-red-600 flex items-center gap-2">
+                            <X className="h-5 w-5" />
+                            Payment Canceled
+                        </DialogTitle>
+                        <DialogDescription>
+                            Your payment was not completed. This could be due to insufficient funds, card issues, or other reasons.
+                            Please try again or contact support if the issue persists.
+                        </DialogDescription>
+                    </DialogHeader>
+                    <DialogFooter>
+                        <Button onClick={() => setErrorModalOpen(false)} className="w-full">
+                            Try Again
+                        </Button>
+                    </DialogFooter>
+                </DialogContent>
+            </Dialog>
         </div>
     );
 }
