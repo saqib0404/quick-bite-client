@@ -12,7 +12,7 @@ import {
     TableRow,
 } from "@/components/ui/table";
 import { Pagination } from "@/components/ui/pagination";
-import { adminOrdersService } from "@/services/admin-order-service";
+import { getAdminOrdersAction } from "./action";
 
 
 const ITEMS_PER_PAGE = 10;
@@ -45,7 +45,7 @@ export default function AdminOrdersPage() {
     React.useEffect(() => {
         const fetchData = async () => {
             try {
-                const result = await adminOrdersService.getOrdersTableData();
+                const result = await getAdminOrdersAction();
                 if (result.error) {
                     setError(result.error.message);
                 } else {
