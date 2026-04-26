@@ -1,36 +1,94 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Quick-Bite Client
 
-## Getting Started
+A modern, scalable frontend application for the Quick-Bite food delivery platform. Built with Next.js and TypeScript, this client provides an intuitive interface for customers, restaurant providers, and administrators to manage orders, menus, and reviews seamlessly.
 
-First, run the development server:
+## 🚀 Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **User-Friendly Dashboard**: Role-based interfaces for customers, providers, and admins.
+- **Real-Time Order Tracking**: Live updates on order status and delivery progress.
+- **Menu Management**: Easy-to-use tools for providers to update menus and pricing.
+- **Review System**: Customer feedback integration for improved service quality.
+- **Responsive Design**: Optimized for desktop, tablet, and mobile devices.
+- **Secure Authentication**: Integrated with Better Auth for robust user management.
+- **Payment Integration**: Seamless Stripe-powered transactions.
+- **Scalable Architecture**: Built with modern React patterns and TypeScript for maintainability.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 💼 Business Value
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Quick-Bite Client empowers food delivery businesses with:
+- **Increased Customer Retention**: Intuitive UI leading to higher user satisfaction.
+- **Operational Efficiency**: Streamlined workflows for providers and admins.
+- **Revenue Growth**: Enhanced ordering experience drives more sales.
+- **Scalability**: Modular design supports rapid expansion to new markets.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🛠 Tech Stack
 
-## Learn More
+- **Framework**: Next.js 16
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **UI Components**: Radix UI
+- **State Management**: React hooks
+- **Authentication**: Better Auth
+- **Charts**: Recharts
+- **Forms**: TanStack Form with Zod validation
+- **Icons**: Lucide React
 
-To learn more about Next.js, take a look at the following resources:
+## 📋 Prerequisites
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Node.js 18+
+- pnpm (recommended) or npm/yarn
+- Access to Quick-Bite Server API
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🚀 Installation
 
-## Deploy on Vercel
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-org/quick-bite-client.git
+   cd quick-bite-client
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+2. Install dependencies:
+   ```bash
+   pnpm install
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+3. Set up environment variables:
+   Create a `.env.local` file in the root directory:
+   ```env
+   NEXT_PUBLIC_API_URL=http://localhost:5000
+   NEXTAUTH_SECRET=your-secret-key
+   NEXTAUTH_URL=http://localhost:3000
+   STRIPE_PUBLISHABLE_KEY=pk_test_...
+   ```
+
+4. Run the development server:
+   ```bash
+   pnpm dev
+   ```
+
+5. Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## 📜 Scripts
+
+- `pnpm dev` - Start development server
+- `pnpm build` - Build for production
+- `pnpm start` - Start production server
+- `pnpm lint` - Run ESLint
+
+## 🤝 Contributing
+
+We welcome contributions! Please follow these steps:
+
+1. Fork the repository.
+2. Create a feature branch: `git checkout -b feature/your-feature`.
+3. Commit changes: `git commit -m 'Add your feature'`.
+4. Push to the branch: `git push origin feature/your-feature`.
+5. Open a Pull Request.
+
+## 📞 Support
+
+For support, email saqibahmad0404@gmail.com 
+
+---
+
+Built with ❤️ for the future of food delivery.
