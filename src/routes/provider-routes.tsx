@@ -1,10 +1,11 @@
 import { Route } from "@/type";
-import { Home, User, UtensilsCrossed, ClipboardList } from "lucide-react";
+import { Home, User, UtensilsCrossed, ClipboardList, BarChart3 } from "lucide-react";
 
 export const providerRoutes: Route[] = [
     {
         title: "Your Dashboard",
         items: [
+            { title: "Dashboard", url: "/provider-dashboard", icon: BarChart3 },
             { title: "Profile", url: "/provider-dashboard/profile", icon: User },
             { title: "My Restaurant", url: "/provider-dashboard/restaurant", icon: UtensilsCrossed },
             { title: "Orders", url: "/provider-dashboard/order", icon: ClipboardList },

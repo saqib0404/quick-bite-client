@@ -22,6 +22,7 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
+import { Pagination } from "@/components/ui/pagination";
 import { AdminUser, UserStatus } from "@/type";
 import { updateUserApprovalAction, updateUserStatusAction } from "@/app/(dashboardLayout)/@admin/admin-dashboard/users/action";
 
@@ -39,16 +40,28 @@ function roleBadgeVariant(role: string) {
 
 const STATUS_OPTIONS: UserStatus[] = ["ACTIVE", "SUSPENDED"];
 
+const ITEMS_PER_PAGE = 10;
+
 export function AdminUsersTable({ initialUsers }: { initialUsers: AdminUser[] }) {
     const router = useRouter();
 
     const [users, setUsers] = React.useState<AdminUser[]>(initialUsers);
+    const [currentPage, setCurrentPage] = React.useState(1);
 
     // per-row loading flags
     const [busy, setBusy] = React.useState<Record<string, boolean>>({});
 
     const setRowBusy = (id: string, v: boolean) =>
         setBusy((m) => ({ ...m, [id]: v }));
+
+    const totalPages = Math.ceil(users.length / ITEMS_PER_PAGE);
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    const endIndex = startIndex + ITEMS_PER_PAGE;
+    const currentUsers = users.slice(startIndex, endIndex);
+
+    const handlePageChange = (page: number) => {
+        setCurrentPage(page);
+    };
 
     async function onToggleApproved(userId: string, nextVal: boolean) {
         setRowBusy(userId, true);
@@ -117,14 +130,14 @@ export function AdminUsersTable({ initialUsers }: { initialUsers: AdminUser[] })
                 </TableHeader>
 
                 <TableBody>
-                    {users.length === 0 ? (
+                    {currentUsers.length === 0 ? (
                         <TableRow>
                             <TableCell colSpan={6} className="py-10 text-center text-muted-foreground">
                                 No users found.
                             </TableCell>
                         </TableRow>
                     ) : (
-                        users.map((u) => {
+                        currentUsers.map((u) => {
                             const isRowBusy = !!busy[u.id];
 
                             return (
@@ -189,6 +202,14 @@ export function AdminUsersTable({ initialUsers }: { initialUsers: AdminUser[] })
                     )}
                 </TableBody>
             </Table>
+
+            <div className="p-4 border-t">
+                <Pagination
+                    currentPage={currentPage}
+                    totalPages={totalPages}
+                    onPageChange={handlePageChange}
+                />
+            </div>
         </div>
     );
 }
