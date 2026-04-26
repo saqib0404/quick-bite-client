@@ -20,6 +20,13 @@ import { Separator } from "@/components/ui/separator";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
+function formatMoney(value: number) {
+    return new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+    }).format(value / 100);
+}
+
 import {
     AlertDialog,
     AlertDialogAction,
@@ -196,7 +203,7 @@ export default function CartClient({
                         Items: {lines.length}
                     </Badge>
                     <Badge variant="outline" className="text-sm">
-                        Total: ${(totalCents)}
+                        Total: {formatMoney(totalCents)}
                     </Badge>
 
                     {/* Clear cart */}
@@ -354,7 +361,7 @@ export default function CartClient({
                                     <div className="flex items-center justify-between">
                                         <span className="text-muted-foreground">Total</span>
                                         <span className="text-base font-bold">
-                                            ${(totalCents)}
+                                            {formatMoney(totalCents)}
                                         </span>
                                     </div>
                                 </div>
@@ -458,14 +465,14 @@ export default function CartClient({
                                                 Qty: <span className="font-medium">{line.quantity}</span>{" "}
                                                 • Price:{" "}
                                                 <span className="font-medium">
-                                                    ${(item.priceCents)}
+                                                    {formatMoney(item.priceCents)}
                                                 </span>
                                             </div>
 
                                             <div className="text-sm">
                                                 Line total:{" "}
                                                 <span className="font-semibold">
-                                                    ${(lineTotal)}
+                                                    {formatMoney(lineTotal)}
                                                 </span>
                                             </div>
                                         </div>

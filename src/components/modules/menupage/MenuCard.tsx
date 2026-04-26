@@ -5,6 +5,13 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/componen
 import { CheckCircle2, CircleX } from "lucide-react";
 import { MenuItem } from "@/type";
 
+function formatMoney(value: number) {
+    return new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+    }).format(value / 100);
+}
+
 function cuisineBadgeTone(cuisine: MenuItem["cuisine"]) {
     // Using the same family of colors you used in "What We Offer"
     switch (cuisine) {
@@ -47,7 +54,7 @@ export default function MenuCard({ item }: { item: MenuItem }) {
                     </CardTitle>
 
                     <div className="shrink-0 text-base font-semibold">
-                       $ {item.priceCents}
+                       {formatMoney(item.priceCents)}
                     </div>
                 </div>
             </CardHeader>

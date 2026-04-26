@@ -92,7 +92,7 @@ export default async function MenuDetailsPage({
                     <div className="space-y-5">
                         <div className="flex items-start justify-between gap-4">
                             <h1 className="text-3xl md:text-4xl font-bold leading-tight">{item.name}</h1>
-                            <div className="text-xl font-semibold">$ {item.priceCents}</div>
+                            <div className="text-xl font-semibold">{new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(item.priceCents / 100)}</div>
                         </div>
 
                         <div className="flex flex-wrap gap-2">
