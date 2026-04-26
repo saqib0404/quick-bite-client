@@ -361,7 +361,7 @@ export default function CartClient({
                                     <div className="flex items-center justify-between">
                                         <span className="text-muted-foreground">Total</span>
                                         <span className="text-base font-bold">
-                                            {formatMoney(totalCents)}
+                                            ${formatMoney(totalCents)}
                                         </span>
                                     </div>
                                 </div>

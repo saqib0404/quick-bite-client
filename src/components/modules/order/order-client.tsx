@@ -10,6 +10,13 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { MyOrder, OrderStatus } from "@/type";
 
+function formatMoney(value: number) {
+    return new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+    }).format(value / 100);
+}
+
 function statusVariant(status: OrderStatus) {
     const s = (status || "").toUpperCase();
     if (s === "DELIVERED") return "default";
@@ -66,7 +73,7 @@ export default function OrdersClient({ orders }: { orders: MyOrder[] }) {
                                         <Badge variant={statusVariant(o.status)}>
                                             {prettyStatus(o.status)}
                                         </Badge>
-                                        <div className="font-semibold">${(o.totalCents)}</div>
+                                        <div className="font-semibold">{formatMoney(o.totalCents)}</div>
                                     </div>
                                 </div>
                             </CardHeader>
