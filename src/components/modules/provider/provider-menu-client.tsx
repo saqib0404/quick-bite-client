@@ -305,7 +305,7 @@ export default function ProviderMenuClient({
                                 </p>
 
                                 <div className="flex items-center justify-between">
-                                    <p className="font-semibold">${(item.priceCents)}</p>
+                                    <p className="font-semibold">${(item.priceCents / 100).toFixed(2)}</p>
                                 </div>
 
                                 <div className="flex items-center justify-between gap-2">
